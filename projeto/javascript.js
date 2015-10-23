@@ -42,12 +42,12 @@ function calcularIMCDeTodos(event){
 		var pacienteAtual = pacientes[i];
 		var peso = pacienteAtual.getElementsByClassName("info-peso")[0].textContent;
 		var altura = pacienteAtual.getElementsByClassName("info-altura")[0].textContent;
-		var imc = pacienteAtual.getElementsByClassName("info-imc")[0].textContent;
+		var imc = pacienteAtual.getElementsByClassName("info-imc")[0];
 		
 		var imcDoPaciente = peso / (altura * altura);
 		console.log(imcDoPaciente);
 		
-		imc = imcDoPaciente;
+		imc.textContent = imcDoPaciente;
 	}
 		
 }
