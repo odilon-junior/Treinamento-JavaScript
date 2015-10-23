@@ -1,11 +1,13 @@
 
 var botao = document.querySelector("#adicionar-paciente");
+
 botao.addEventListener("click", function(event){
-	 event.preventDefault()
+	 
+	event.preventDefault();
 	
 	var paciente = getPaciente();
-	
-	var table = document.getElementsByTagName("table");
+		
+	var table = document.getElementsByTagName("table")[0];
 	
 	var estruturaNovoPaciente = "<tr class='paciente'>"+
                           "<td class='info-nome'>"+paciente.nome+"</td>"+
@@ -20,12 +22,34 @@ botao.addEventListener("click", function(event){
 function getPaciente(){
 	var nome = document.getElementById("campo-nome").value;
 	var peso = document.getElementById("campo-peso").value;
-	var altura =document.getElementById("campo-altura").value;
+	var altura = document.getElementById("campo-altura").value;
 	
 	var paciente = {nome : nome , peso: peso, altura : altura};
-	console.log(nome)
 	
 	return paciente;
+}
+
+var botaoCalcular = document.getElementById("calcula-imcs");
+botaoCalcular.addEventListener("click", calcularIMCDeTodos)
+
+function calcularIMCDeTodos(event){
+	
+	event.preventDefault();
+	
+	var pacientes = document.getElementsByClassName("paciente");
+	
+	for(var i=0; i <= pacientes.length-1; i++){
+		var pacienteAtual = pacientes[i];
+		var peso = pacienteAtual.getElementsByClassName("info-peso")[0].textContent;
+		var altura = pacienteAtual.getElementsByClassName("info-altura")[0].textContent;
+		var imc = pacienteAtual.getElementsByClassName("info-imc")[0].textContent;
+		
+		var imcDoPaciente = peso / (altura * altura);
+		console.log(imcDoPaciente);
+		
+		imc = imcDoPaciente;
+	}
+		
 }
 
 
